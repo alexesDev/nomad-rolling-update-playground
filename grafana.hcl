@@ -275,6 +275,8 @@ datasources:
         EOH
 
         destination = "local/provisioning/dashboards/monitor.json"
+        left_delimiter = "{{{"
+        right_delimiter = "}}}"
       }
 
       template {
