@@ -36,7 +36,7 @@ modules:
     prober: http
     timeout: 5s
     http:
-      valid_status_codes: []
+      valid_status_codes: [200]
       method: GET
         EOH
 

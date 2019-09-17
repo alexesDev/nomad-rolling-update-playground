@@ -2,15 +2,15 @@ job "example" {
   datacenters = ["dc1"]
 
   group "example" {
-    count = 2
+    count = 5
 
-    # update {
-    #   max_parallel = 1
-    #   min_healthy_time = "10s"
-    #   healthy_deadline = "5m"
-    #   progress_deadline = "10m"
-    #   auto_revert = true
-    # }
+    update {
+      max_parallel = 1
+      min_healthy_time = "5s"
+      healthy_deadline = "5m"
+      progress_deadline = "10m"
+      auto_revert = true
+    }
 
     task "example" {
       driver = "docker"
@@ -34,7 +34,7 @@ job "example" {
       }
 
       env {
-        CHANGEME = 8
+        NOMAD_ALLOC_ID = "v7 ${NOMAD_ALLOC_INDEX}"
       }
 
       service {

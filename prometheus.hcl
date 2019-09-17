@@ -35,7 +35,7 @@ rule_files:
 
 scrape_configs:
   - job_name: 'services'
-    scrape_interval: 50ms
+    scrape_interval: 1s
     consul_sd_configs:
       - server: '127.0.0.1:8500'
         services: []
@@ -48,7 +48,7 @@ scrape_configs:
         target_label: job
 
   - job_name: 'blackbox'
-    scrape_interval: 50ms
+    scrape_interval: 1s
     metrics_path: /probe
     params:
       module: [http_2xx]
@@ -66,8 +66,6 @@ scrape_configs:
         EOH
 
         destination = "local/prometheus.yml"
-        change_mode = "signal"
-        change_signal = "SIGHUP"
       }
 
       resources {

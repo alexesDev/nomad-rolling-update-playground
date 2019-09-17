@@ -61,18 +61,17 @@ datasources:
   "panels": [
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "fill": 1,
       "gridPos": {
-        "h": 7,
+        "h": 8,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 4,
-      "interval": "",
+      "id": 2,
       "legend": {
         "avg": false,
         "current": false,
@@ -82,7 +81,7 @@ datasources:
         "total": false,
         "values": false
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
@@ -93,14 +92,13 @@ datasources:
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "healthy",
-          "format": "time_series",
+          "expr": "probe_success",
+          "format": "heatmap",
           "intervalFactor": 1,
-          "legendFormat": "{{ name }}",
           "refId": "A"
         }
       ],
@@ -108,7 +106,7 @@ datasources:
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Healty",
+      "title": "Probe",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -147,17 +145,18 @@ datasources:
     },
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
+      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
       "fill": 1,
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 8
       },
-      "id": 2,
+      "id": 3,
       "legend": {
         "avg": false,
         "current": false,
@@ -167,24 +166,28 @@ datasources:
         "total": false,
         "values": false
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
       "options": {},
       "percentage": false,
+      "pluginVersion": "6.2.5",
       "pointradius": 2,
-      "points": true,
+      "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_success",
-          "format": "time_series",
+          "expr": "sum(label_replace(healthy, \"version\", \"$1\", \"name\", \"(.*) .*\")) by (version)",
+          "format": "heatmap",
+          "instant": false,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "{{ version }}",
           "refId": "A"
         }
       ],
@@ -192,7 +195,7 @@ datasources:
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Probe",
+      "title": "Healty",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -268,9 +271,9 @@ datasources:
     ]
   },
   "timezone": "",
-  "title": "New dashboard Copy",
+  "title": "Monitor",
   "uid": "JzjWpipWk",
-  "version": 3
+  "version": 1
 }
         EOH
 
